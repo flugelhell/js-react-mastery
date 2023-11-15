@@ -169,7 +169,10 @@ function App() {
         </div>
       </div>
       {/* modal for delete */}
-      <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
+      <dialog
+        id="my_modal_5"
+        className="modal modal-bottom sm:modal-middle backdrop-blur-sm"
+      >
         <div className="modal-box">
           <h3 className="font-bold text-lg">Warning!</h3>
           <p className="py-4">Yakin mau didelete?</p>
