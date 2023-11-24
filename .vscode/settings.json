@@ -9,5 +9,5 @@
   "editor.quickSuggestions": {
     "strings": true
   },
-  "prettier.printWidth": 150
+  "prettier.printWidth": 450
 }

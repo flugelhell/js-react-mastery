@@ -2,27 +2,30 @@ import { useState, useEffect } from "react";
 
 export default function Navbar() {
   const [theme, setTheme] = useState("light");
-  const toggleTheme = () => {
-    setTheme(theme === "dark" ? "light" : "dark");
-  };
   // initially set the theme and "listen" for changes to apply them to the HTML tag
   useEffect(() => {
     document.querySelector("html").setAttribute("data-theme", theme);
   }, [theme]);
 
   return (
-    <div className="navbar bg-base-100 dark:bg-base-200 shadow">
+    <div className="navbar shadow shadow-base-300">
       <div className="flex-1">
         <a className="btn btn-ghost text-xl">React Router</a>
         <div className="flex-none">
           <ul className="menu menu-horizontal px-1">
             <li>
-              <a>Link</a>
+              <a>Home</a>
+            </li>
+            <li>
+              <a>About</a>
+            </li>
+            <li>
+              <a>Contact</a>
             </li>
             <li>
               <details>
                 <summary>Parent</summary>
-                <ul className="p-2 bg-base-100 dark:bg-base-200 rounded-sm ">
+                <ul className="p-2 rounded-sm bg-base-200">
                   <li>
                     <a>Link 1</a>
                   </li>
@@ -36,28 +39,57 @@ export default function Navbar() {
         </div>
       </div>
       <div className="flex-none">
-        <label className="swap swap-rotate">
-          <input onClick={toggleTheme} type="checkbox" />
-          <div className="swap-on">DARKMODE</div>
-          <div className="swap-off">LIGHTMODE</div>
-        </label>
-
         <div className="dropdown dropdown-end">
-          <label tabIndex="0" className="btn m-1">
-            Click
+          <label tabIndex="0" className="btn btn-sm btn-ghost m-1 font-normal">
+            Theme <i className="bx bxs-chevron-down"></i>
           </label>
           <ul tabIndex="0" className="dropdown-content z-[1] menu p-2 shadow bg-base-200 rounded-sm w-52">
             <li>
-              <a>Item 1</a>
+              <a className={theme == "light" ? "bg-primary text-neutral-content" : ""} onClick={() => setTheme("light")}>
+                Light
+                {theme == "light" && <span className="text-right">✓</span>}
+              </a>
             </li>
             <li>
-              <a>Item 2</a>
+              <a className={theme == "dark" ? "bg-primary  text-info-content" : ""} onClick={() => setTheme("dark")}>
+                Dark
+                {theme == "dark" && <span className="text-right">✓</span>}
+              </a>
+            </li>
+            <li>
+              <a className={theme == "fantasy" ? "bg-primary  text-neutral-content" : ""} onClick={() => setTheme("fantasy")}>
+                Fantasy
+                {theme == "fantasy" && <span className="text-right">✓</span>}
+              </a>
+            </li>
+            <li>
+              <a className={theme == "dracula" ? "bg-primary  text-neutral-content" : ""} onClick={() => setTheme("dracula")}>
+                Dracula
+                {theme == "dracula" && <span className="text-right">✓</span>}
+              </a>
+            </li>
+            <li>
+              <a className={theme == "corporate" ? "bg-primary  text-neutral-content" : ""} onClick={() => setTheme("corporate")}>
+                Corporate
+                {theme == "corporate" && <span className="text-right">✓</span>}
+              </a>
+            </li>
+            <li>
+              <a className={theme == "business" ? "bg-primary  text-neutral-content" : ""} onClick={() => setTheme("business")}>
+                Business
+                {theme == "business" && <span className="text-right">✓</span>}
+              </a>
             </li>
           </ul>
         </div>
+
         <div className="dropdown dropdown-end">
-          <label tabIndex="0" className="btn m-1">
-            Click
+          <label tabIndex="0" className="btn btn-ghost m-1 font-normal hover:bg-transparent">
+            <div className="avatar placeholder">
+              <div className="bg-neutral text-neutral-content rounded-full w-12">
+                <span>MX</span>
+              </div>
+            </div>
           </label>
           <ul tabIndex="0" className="dropdown-content z-[1] menu p-2 shadow bg-base-200 rounded-sm w-52">
             <li>

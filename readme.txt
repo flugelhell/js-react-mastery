@@ -21,3 +21,5 @@
                 themes: ["light", "dark", "cupcake"],
             },
       Then edit index.html and add this to html tag: data-theme="light" tobe like this: <html lang="en" data-theme="light">
+4. Install Box Icon
+    - add this to index html: <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" /> or download it for offline usage
