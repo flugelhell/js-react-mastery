@@ -5,16 +5,33 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <div className="container grow m-2">
-        <div className="card card-compact w-96 bg-base-100 shadow-xl">
-          <figure>
-            <img src="/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" />
-          </figure>
-          <div className="card-body">
-            <h2 className="card-title">Shoes!</h2>
-            <p>If a dog chews shoes whose shoes does he choose?</p>
-            <div className="card-actions justify-end">
-              <button className="btn btn-primary">Buy Now</button>
+      <div className="container grow m-2 mx-auto">
+        <div className="w-fit mx-auto">
+          <h1 className="font-bold text-xl m-4">Home Page</h1>
+          <div className="flex justify-center">
+            <div className="card card-compact w-60 bg-base-100 shadow-xl rounded-none m-4">
+              <figure className="w-60 h-64 bg-[url('/images/js.png')] bg-cover bg-no-repeat bg-center bg-origin-content p-4"></figure>
+              <div className="card-body">
+                <h2 className="card-title">JS</h2>
+              </div>
+            </div>
+            <div className="card card-compact w-60 bg-base-100 shadow-xl rounded-none m-4">
+              <figure className="w-60 h-64 bg-[url('/images/react.png')] bg-cover bg-no-repeat bg-center bg-origin-content p-4"></figure>
+              <div className="card-body">
+                <h2 className="card-title">React</h2>
+              </div>
+            </div>
+            <div className="card card-compact w-60 bg-base-100 shadow-xl rounded-none m-4">
+              <figure className="w-60 h-64 bg-[url('/images/vue.png')] bg-cover bg-no-repeat bg-center bg-origin-content p-4"></figure>
+              <div className="card-body">
+                <h2 className="card-title">Vue</h2>
+              </div>
+            </div>
+            <div className="card card-compact w-60 bg-base-100 shadow-xl rounded-none m-4">
+              <figure className="w-60 h-64 bg-[url('/images/svelte.png')] bg-cover bg-no-repeat bg-center bg-origin-content p-4"></figure>
+              <div className="card-body">
+                <h2 className="card-title">Svelte</h2>
+              </div>
             </div>
           </div>
         </div>

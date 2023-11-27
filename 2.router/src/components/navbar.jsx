@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
 
 export default function Navbar() {
   const [theme, setTheme] = useState("light");
@@ -14,13 +15,19 @@ export default function Navbar() {
         <div className="flex-none">
           <ul className="menu menu-horizontal px-1">
             <li>
-              <a>Home</a>
+              <NavLink to={`/`} className={({ isActive, isPending }) => (isActive ? "active" : isPending ? "pending" : "")}>
+                Home
+              </NavLink>
             </li>
             <li>
-              <a>About</a>
+              <NavLink to={`/about`} className={({ isActive, isPending }) => (isActive ? "active" : isPending ? "pending" : "")}>
+                About
+              </NavLink>
             </li>
             <li>
-              <a>Contact</a>
+              <NavLink to={`/contact`} className={({ isActive, isPending }) => (isActive ? "active" : isPending ? "pending" : "")}>
+                Contact
+              </NavLink>
             </li>
             <li>
               <details>
