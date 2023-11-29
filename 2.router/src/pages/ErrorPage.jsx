@@ -1,4 +1,4 @@
-import { useRouteError } from "react-router-dom";
+import { NavLink, useRouteError } from "react-router-dom";
 
 export default function ErrorPage() {
   const error = useRouteError();
@@ -11,8 +11,13 @@ export default function ErrorPage() {
         <div className="text-2xl text-center">
           <p>Sorry, an unexpected error has occurred.</p>
           <p>
-            <i>{error.statusText || error.message}</i>
+            <i>
+              {error.status} {error.statusText || error.message}
+            </i>
           </p>
+          <NavLink to={`/`} className="mt-8 btn btn-primary">
+            Back to Home
+          </NavLink>
         </div>
       </div>
     </div>

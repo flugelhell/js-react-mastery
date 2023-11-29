@@ -1,13 +1,13 @@
-import { useState } from "react";
-import { useEffect } from "react";
-import Home from "./views/home";
+// import { useState } from "react";
+// import { useEffect } from "react";
+// import Home from "./pages/Home";
 
-function App() {
-  return (
-    <>
-      <Home />
-    </>
-  );
-}
+// function App() {
+//   return (
+//     <>
+//       <Home />
+//     </>
+//   );
+// }
 
-export default App;
+// export default App;

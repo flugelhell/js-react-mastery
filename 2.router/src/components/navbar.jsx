@@ -9,30 +9,32 @@ export default function Navbar() {
   }, [theme]);
 
   return (
-    <div className="navbar shadow shadow-base-300">
+    <div className="navbar shadow shadow-base-300 bg-base-300">
       <div className="flex-1">
-        <a className="btn btn-ghost text-xl">React Router</a>
+        <NavLink to={`/`} className="btn btn-ghost text-xl">
+          React Router
+        </NavLink>
         <div className="flex-none">
-          <ul className="menu menu-horizontal px-1">
-            <li>
-              <NavLink to={`/`} className={({ isActive, isPending }) => (isActive ? "active" : isPending ? "pending" : "")}>
+          <ul className="menu menu-horizontal">
+            <li className="mx-1">
+              <NavLink to={`/home`} className={({ isActive, isPending }) => (isActive ? "active" : isPending ? "pending" : "")}>
                 Home
               </NavLink>
             </li>
-            <li>
+            <li className="mx-1">
               <NavLink to={`/about`} className={({ isActive, isPending }) => (isActive ? "active" : isPending ? "pending" : "")}>
                 About
               </NavLink>
             </li>
-            <li>
+            <li className="mx-1">
               <NavLink to={`/contact`} className={({ isActive, isPending }) => (isActive ? "active" : isPending ? "pending" : "")}>
                 Contact
               </NavLink>
             </li>
-            <li>
+            <li className="mx-1">
               <details>
                 <summary>Parent</summary>
-                <ul className="p-2 rounded-sm bg-base-200">
+                <ul className="p-2 rounded-sm bg-base-200 z-[1]">
                   <li>
                     <a>Link 1</a>
                   </li>
