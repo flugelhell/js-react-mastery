@@ -1,32 +1,9 @@
-import { useState } from "react";
-
-import { configureStore } from "@reduxjs/toolkit";
-
-const initialState = { value: 0 };
-function counterReducer(state = initialState, action) {
-  // Check to see if the reducer cares about this action
-  if (action.type === "counter/increment") {
-    // If so, make a copy of `state`
-    return {
-      ...state,
-      // and update the copy with the new value
-      value: state.value + 1,
-    };
-  }
-  // otherwise return the existing state unchanged
-  return state;
-}
-
-const store = configureStore({ reducer: counterReducer });
-
-store.dispatch({ type: "counter/increment" });
-console.log(store.getState());
+import { incrementCounter, decrementCounter, resetCounter } from "./redux/counter/counterSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 function App() {
-  const increment = () => {
-    store.dispatch({ type: "counter/increment" });
-  };
-
+  const dispatch = useDispatch(); // untuk update state
+  const counter = useSelector((state) => state.counter); // untuk watch
   return (
     <>
       <div className="flex">
@@ -34,9 +11,20 @@ function App() {
       </div>
       <div className="flex-1">
         <h1 className="text-center text-2xl font-extrabold m-4">React Redux</h1>
-        <button className="block mx-auto bg-slate-500 p-2 text-slate-200 hover:bg-slate-600 active:bg-slate-800 rounded" onClick={() => increment}>
-          {/* count is {count} */}
-        </button>
+        <div className="flex ">
+          <div className="mx-auto flex">
+            <button className="bg-slate-500 p-2 text-slate-200 hover:bg-slate-600 active:bg-slate-800 rounded" onClick={() => dispatch(decrementCounter())}>
+              -
+            </button>
+            <div className="p-2 text-slate-800">{counter}</div>
+            <button className="bg-slate-500 p-2 text-slate-200 hover:bg-slate-600 active:bg-slate-800 rounded" onClick={() => dispatch(incrementCounter())}>
+              +
+            </button>
+            <button className="bg-slate-500 ml-1 p-2 text-slate-200 hover:bg-slate-600 active:bg-slate-800 rounded" onClick={() => dispatch(resetCounter())}>
+              Reset
+            </button>
+          </div>
+        </div>
       </div>
     </>
   );
