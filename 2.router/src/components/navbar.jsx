@@ -1,8 +1,13 @@
+import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
+import { changeTheme } from "../redux/themeSlice";
 
 export default function Navbar() {
-  const [theme, setTheme] = useState("light");
+  // redux
+  const dispatch = useDispatch(); // untuk update state
+  const theme = useSelector((state) => state.theme); // untuk watch
+
   // initially set the theme and "listen" for changes to apply them to the HTML tag
   useEffect(() => {
     document.querySelector("html").setAttribute("data-theme", theme);
@@ -54,37 +59,37 @@ export default function Navbar() {
           </label>
           <ul tabIndex="0" className="dropdown-content z-[1] menu p-2 shadow bg-base-200 rounded-sm w-52">
             <li>
-              <a className={theme == "light" ? "bg-primary text-neutral-content" : ""} onClick={() => setTheme("light")}>
+              <a className={theme == "light" ? "bg-primary text-neutral-content" : ""} onClick={() => dispatch(changeTheme("light"))}>
                 Light
                 {theme == "light" && <span className="text-right">✓</span>}
               </a>
             </li>
             <li>
-              <a className={theme == "dark" ? "bg-primary  text-info-content" : ""} onClick={() => setTheme("dark")}>
+              <a className={theme == "dark" ? "bg-primary  text-info-content" : ""} onClick={() => dispatch(changeTheme("dark"))}>
                 Dark
                 {theme == "dark" && <span className="text-right">✓</span>}
               </a>
             </li>
             <li>
-              <a className={theme == "fantasy" ? "bg-primary  text-neutral-content" : ""} onClick={() => setTheme("fantasy")}>
+              <a className={theme == "fantasy" ? "bg-primary  text-neutral-content" : ""} onClick={() => dispatch(changeTheme("fantasy"))}>
                 Fantasy
                 {theme == "fantasy" && <span className="text-right">✓</span>}
               </a>
             </li>
             <li>
-              <a className={theme == "dracula" ? "bg-primary  text-neutral-content" : ""} onClick={() => setTheme("dracula")}>
+              <a className={theme == "dracula" ? "bg-primary  text-neutral-content" : ""} onClick={() => dispatch(changeTheme("dracula"))}>
                 Dracula
                 {theme == "dracula" && <span className="text-right">✓</span>}
               </a>
             </li>
             <li>
-              <a className={theme == "corporate" ? "bg-primary  text-neutral-content" : ""} onClick={() => setTheme("corporate")}>
+              <a className={theme == "corporate" ? "bg-primary  text-neutral-content" : ""} onClick={() => dispatch(changeTheme("corporate"))}>
                 Corporate
                 {theme == "corporate" && <span className="text-right">✓</span>}
               </a>
             </li>
             <li>
-              <a className={theme == "business" ? "bg-primary  text-neutral-content" : ""} onClick={() => setTheme("business")}>
+              <a className={theme == "business" ? "bg-primary  text-neutral-content" : ""} onClick={() => dispatch(changeTheme("business"))}>
                 Business
                 {theme == "business" && <span className="text-right">✓</span>}
               </a>
