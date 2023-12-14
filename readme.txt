@@ -24,5 +24,8 @@
 4. Install Box Icon
     - add this to index html: <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" /> or download it for offline usage
 5. Install Redux
-    - pnpm install idb -> untuk penyimpanan indexedDB
     - pnpm install react-redux @reduxjs/toolkit
+    
+6. Install API IndexDB
+    - pnpm install idb
+    - Library ini adalah API yang bisa digunakan untuk mengakses indexdb yang nantinya akan digunakan sebagai tempat penyimpanan redux store

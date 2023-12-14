@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 function startTime() {
   const today = new Date();
@@ -19,7 +20,11 @@ function checkTime(i) {
 const Header = () => {
   const kasir = useSelector((state) => state.posConfig.kasir);
   const pos_id = useSelector((state) => state.posConfig.pos_id);
-  startTime();
+
+  // run after rendered
+  useEffect(() => {
+    startTime();
+  }, []);
 
   return (
     <div className="navbar bg-blue-600 text-slate-100">
