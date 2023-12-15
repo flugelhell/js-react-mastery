@@ -1,12 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 // Slice adalah kumpulan dari redux reducer dan action
-const productSlice = createSlice({
-  name: "products",
-  initialState: { product_db: [], product_show: [] },
+const categorySlice = createSlice({
+  name: "categories",
+  initialState: [],
   reducers: {
-    setProduct: (state, action) => {
-      //   let new_state = [...state];
+    setCategory: (state, action) => {
+      // let new_state = [...state];
       //   let indexs = new_state.map((x) => x.id);
       //   action.payload.forEach((element) => {
       //     if (!indexs.includes(element.id)) {
@@ -21,6 +21,6 @@ const productSlice = createSlice({
 });
 
 // export action
-export const { setProduct } = productSlice.actions;
+export const { setCategory } = categorySlice.actions;
 // export default reducer
-export default productSlice.reducer;
+export default categorySlice.reducer;

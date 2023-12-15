@@ -5,9 +5,20 @@ import Product from "./components/Products";
 import Order from "./components/Order";
 import Payment from "./components/Payment";
 import { setProduct } from "./redux/productSlice";
+import { setCategory } from "./redux/CategorySlice";
 import { useDispatch, useSelector } from "react-redux";
 
-const product_list = [
+const category_list = [
+  {
+    id: 1,
+    name: "Sepatu",
+  },
+  {
+    id: 2,
+    name: "Baju",
+  },
+];
+const product_db = [
   {
     id: 1,
     sku: "FW001",
@@ -50,12 +61,22 @@ const product_list = [
   },
 ];
 
+const product_list = {
+  product_db: [...product_db], // harus disimpan di idb
+  product_show: [...product_db],
+};
 function App() {
   console.log("App Component Rendered");
   const dispatch = useDispatch();
-  const products = useSelector((state) => state.products);
+  const products = useSelector((state) => state.products); // triggered re-render
+  const categories = useSelector((state) => state.categories); // triggered re-render
   useEffect(() => {
-    dispatch(setProduct(product_list));
+    // will fire when componentDidMount
+    return () => {
+      // will fire when componentWillMount
+      dispatch(setCategory(category_list));
+      dispatch(setProduct(product_list));
+    };
   }, []);
 
   return (
@@ -64,11 +85,11 @@ function App() {
         <Header />
         <div className="flex grow">
           <div className="w-2/12 p-2">
-            <Categories />
+            <Categories categories={categories} />
           </div>
           <div className="divider divider-horizontal mx-0"></div>
           <div className="flex grow flex-wrap">
-            <Product />
+            <Product products={products} />
           </div>
           <div className="divider divider-horizontal mx-0"></div>
           <div className="w-3/12 p-2">
