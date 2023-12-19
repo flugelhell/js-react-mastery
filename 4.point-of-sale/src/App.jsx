@@ -31,7 +31,7 @@ const product_db = [
     id: 2,
     sku: "FW002",
     name: "Sepatu Adidas Merdeka",
-    price: 1500,
+    price: 1500000,
     categ_id: 1,
     image: "/images/2.jpg",
   },
@@ -46,7 +46,7 @@ const product_db = [
   {
     id: 4,
     sku: "TS001",
-    name: "Jersey Manchester United",
+    name: "Jersey Manchester United sdfsdf sdf",
     price: 2000,
     categ_id: 2,
     image: "/images/4.jpg",
@@ -93,7 +93,7 @@ function App() {
           </div>
           <div className="divider divider-horizontal mx-0"></div>
           <div className="w-3/12 p-2">
-            <div className="h-4/6 overflow-scroll overflow-x-hidden">
+            <div className="h-4/6 overflow-scroll overflow-x-hidden" id="order-panel">
               <Order />
             </div>
             <div className="divider"></div>
