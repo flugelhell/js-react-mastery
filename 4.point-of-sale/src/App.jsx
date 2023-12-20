@@ -65,6 +65,9 @@ const product_list = {
   product_db: [...product_db], // harus disimpan di idb
   product_show: [...product_db],
 };
+
+const formatLanguage = "id";
+
 function App() {
   console.log("App Component Rendered");
   const dispatch = useDispatch();
@@ -89,16 +92,16 @@ function App() {
           </div>
           <div className="divider divider-horizontal mx-0"></div>
           <div className="flex grow flex-wrap">
-            <Product products={products} />
+            <Product products={products} formatLanguage={formatLanguage}/>
           </div>
           <div className="divider divider-horizontal mx-0"></div>
           <div className="w-3/12 p-2">
             <div className="h-4/6 overflow-scroll overflow-x-hidden" id="order-panel">
-              <Order />
+              <Order formatLanguage={formatLanguage}/>
             </div>
             <div className="divider"></div>
-            <div className="bottom-0">
-              <Payment />
+            <div className="h-[25%] flex flex-col">
+              <Payment formatLanguage={formatLanguage}/>
             </div>
           </div>
         </div>

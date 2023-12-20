@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setOrder } from "../redux/orderSlice";
 import { useEffect, useState } from "react";
 
-const Order = () => {
+const Order = ({ formatLanguage }) => {
   const dispatch = useDispatch();
   const order = useSelector((state) => state.order);
   const [totalAmount, setTotalAmount] = useState(order.order_lines.reduce((sumTotal, line) => sumTotal + line.total, 0));
@@ -66,7 +66,7 @@ const Order = () => {
           <span className="btn btn-sm btn-error text-base-100 absolute top-0 right-0" onClick={() => clearOrder()}>
             Clear
           </span>
-          <input type="radio" name="my_tabs_2" role="tab" className="tab" aria-label="Order" defaultChecked />
+          <input type="radio" name="my_tabs_2" role="tab" className="tab mt-1" aria-label="Order" defaultChecked />
           <div role="tabpanel" className="tab-content bg-base-100 border-base-300 p-1 border-x-0 border-b-0">
             {order.order_lines.map((line, index) => (
               <div className="flex shadow-md p-3 mt-1 overflow-y-auto" key={index}>
@@ -82,7 +82,7 @@ const Order = () => {
                     ➕
                   </button>
                 </div>
-                <div className="grow-0 text-right w-1/5 my-auto">{line.total.toLocaleString()}</div>
+                <div className="grow-0 text-right w-1/5 my-auto">{line.total.toLocaleString(formatLanguage)}</div>
                 <div className="btn btn-xs btn-circle text-xs my-auto ml-1" onClick={() => removeOrderLine(line.product_id)}>
                   ❌
                 </div>
@@ -92,7 +92,7 @@ const Order = () => {
             {order.order_lines.length > 0 && (
               <div className="mt-4 flex">
                 <div className="text-xl font-bold">Total:</div>
-                <div className="text-xl font-bold absolute right-2">{totalAmount.toLocaleString()}</div>
+                <div className="text-xl font-bold absolute right-2">{totalAmount.toLocaleString(formatLanguage)}</div>
               </div>
             )}
           </div>
