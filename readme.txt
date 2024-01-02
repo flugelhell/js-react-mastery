@@ -29,3 +29,6 @@
 6. Install API IndexDB
     - pnpm install idb
     - Library ini adalah API yang bisa digunakan untuk mengakses indexdb yang nantinya akan digunakan sebagai tempat penyimpanan redux store
+
+7. Install react-beautiful-dnd
+    - Library ini untuk fitur drag and drop
