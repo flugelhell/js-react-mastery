@@ -3,12 +3,22 @@ import "../App.css";
 import Header from "../components/header";
 import ListItem from "../components/list-item";
 import Button from "../components/button";
+import { useStoreContext } from "../contexts/store";
+import { redirect, useNavigate } from "react-router-dom";
 
 const Home = () => {
   const [count, setCount] = useState(0);
   const [data, setData] = useState(["ini budi", "ini ani"]);
   const [isEdit, setIsEdit] = useState(false);
   const [currentDataIndex, setCurrentDataIndex] = useState(null);
+  const { store, dispatch } = useStoreContext();
+  const navigateTo = useNavigate();
+  // console.log(store.isAuth);
+  if (!store.isAuth) {
+    console.log("belom login");
+    // return redirect("/");
+    navigateTo("/");
+  }
 
   const delData = (index) => {
     const new_data = [...data.slice(0, index), ...data.slice(index + 1)];
