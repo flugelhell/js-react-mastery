@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "../App.css";
 import Header from "../components/header";
 import ListItem from "../components/list-item";
 import Button from "../components/button";
 import { useStoreContext } from "../contexts/store";
-import { redirect, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const [count, setCount] = useState(0);
@@ -13,12 +13,8 @@ const Home = () => {
   const [currentDataIndex, setCurrentDataIndex] = useState(null);
   const { store, dispatch } = useStoreContext();
   const navigateTo = useNavigate();
+
   // console.log(store.isAuth);
-  if (!store.isAuth) {
-    console.log("belom login");
-    // return redirect("/");
-    navigateTo("/");
-  }
 
   const delData = (index) => {
     const new_data = [...data.slice(0, index), ...data.slice(index + 1)];
@@ -61,11 +57,17 @@ const Home = () => {
     setIsEdit(false);
     setCurrentDataIndex(null);
   };
+  const logout = () => {
+    dispatch({ type: "auth/logout" });
+    navigateTo("/");
+  };
   return (
     <>
       <div className="">
         <Header />
-
+        <div className="text-center m-2">
+          <Button text={`Logout`} onClick={() => logout()} />
+        </div>
         <div className="list">
           {data.map((value, index) => (
             <ListItem text_list={value} key={index}>

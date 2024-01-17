@@ -1,7 +1,7 @@
 import Input from "../components/input";
 import Button from "../components/button";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate, Navigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
@@ -17,7 +17,17 @@ const Auth = () => {
   const base_url = "http://localhost:5000/api/v1";
   const navigateTo = useNavigate();
   const { store, dispatch } = useStoreContext();
-  console.log("store: ", store);
+  // console.log("store: ", store);
+
+  useEffect(() => {
+    const isAuth = sessionStorage.getItem("isAuth");
+    const token = sessionStorage.getItem("token");
+
+    // jika sudah login maka redirect ke home
+    if (isAuth && token) {
+      return navigateTo("/home");
+    }
+  }, []);
 
   const notify = (type = "info", message = "") => {
     let option = {
@@ -55,8 +65,7 @@ const Auth = () => {
         setIsLoading(true);
         const res = await axios.post(`${base_url}/user/signin`, payload);
         // console.log("response ", res.data);
-        // localStorage.setItem("token", res.data.token);
-
+        // localStorage.setItem("token", res.data.token); sudah di login
         // change store
         dispatch({ type: "auth/login", token: res.data.token });
 

@@ -12,17 +12,17 @@ const initialState = {
 const contextReducer = (state, action) => {
   switch (action.type) {
     case "auth/login": {
-      localStorage.setItem("token", action.token);
+      sessionStorage.setItem("isAuth", true);
+      sessionStorage.setItem("token", action.token);
       return {
         ...state,
-        isAuth: true,
       };
     }
     case "auth/logout": {
-      localStorage.removeItem("token");
+      sessionStorage.removeItem("isAuth");
+      sessionStorage.removeItem("token");
       return {
         ...state,
-        isAuth: false,
       };
     }
     default: {

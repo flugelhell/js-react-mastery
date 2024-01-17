@@ -4,7 +4,7 @@ import { ContextProvider } from "./contexts/store";
 const App = () => {
   return (
     <ContextProvider>
-      <RouterProvider router={router} />;
+      <RouterProvider router={router} />
     </ContextProvider>
   );
 };

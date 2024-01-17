@@ -1,38 +1,55 @@
-const User = require('../models/User');
-const ErrorResponse = require('../utils/errorResponse');
+const User = require("../models/User");
+const ErrorResponse = require("../utils/errorResponse");
+const jwt = require("jsonwebtoken");
+const { JWT_SECRET } = process.env;
 
-exports.register= async(req, res) => {
+exports.register = async (req, res) => {
   try {
-    const user = await User.create(req.body) 
-    const token = user.getSignedJwtToken()
-    res.status(200).json({ 
+    const user = await User.create(req.body);
+    const token = user.getSignedJwtToken();
+    res.status(200).json({
       message: "success",
-      token
-    }) 
+      token,
+    });
   } catch (err) {
     console.error(err.message);
-    res.status(500).send('Server Error');
+    res.status(500).send("Server Error");
   }
-}
+};
 
-
-exports.login = async(req, res, next) => {
+exports.login = async (req, res, next) => {
   try {
-    const { email, password } = req.body;
+    const { email, password, verify_token } = req.body;
+
+    // untuk cek token aktif atw tidak, khusus jika memasukan verify token
+    if (verify_token) {
+      // console.log(verify_token);
+      jwt.verify(verify_token, JWT_SECRET, (error, decoded) => {
+        if (error) {
+          // console.log("invalid");
+          return res.status(401).json({ status: false, msg: "Token is not valid" });
+        } else {
+          // console.log("valid");
+          return res.status(200).json({ status: true, msg: "Token valid" });
+        }
+      });
+      return;
+    }
+
     // Validate emil & password
     if (!email || !password) {
       return res.status(400).json({
-        message: "Please provide an email and password"
-      })
+        message: "Please provide an email and password",
+      });
     }
 
     // Check for user
-    const user = await User.findOne({ email }).select('+password');
+    const user = await User.findOne({ email }).select("+password");
 
     if (!user) {
       return res.status(401).json({
-        message: "Invalid credential"
-      })
+        message: "Invalid credential",
+      });
     }
 
     // Check if password matches
@@ -40,18 +57,18 @@ exports.login = async(req, res, next) => {
 
     if (!isMatch) {
       return res.status(401).json({
-        message: "Invalid credential"
-      })
+        message: "Invalid credential",
+      });
     }
 
-    const token = user.getSignedJwtToken()
+    const token = user.getSignedJwtToken();
 
-    res.status(200).json({ 
+    res.status(200).json({
       message: "success",
-      token
-    })
-  }catch(err){
+      token,
+    });
+  } catch (err) {
     console.error(err.message);
-    res.status(500).send('Server Error');
+    res.status(500).send("Server Error");
   }
-}
+};
