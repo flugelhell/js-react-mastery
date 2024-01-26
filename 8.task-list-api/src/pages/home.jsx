@@ -7,6 +7,7 @@ import { useStoreContext } from "../contexts/store";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
+import Skeleton from "../components/skeleton";
 
 const Home = () => {
     const [count, setCount] = useState(0);
@@ -16,6 +17,7 @@ const Home = () => {
     const [currentDataId, setCurrentDataId] = useState(null);
     const [currentDataTitle, setCurrentDataTitle] = useState("");
     const { store, dispatch } = useStoreContext();
+    const [isLoading, setIsLoading] = useState(true);
     const navigateTo = useNavigate();
     const base_url = "http://localhost:5000/api/v1";
     const token = sessionStorage.getItem("token");
@@ -51,7 +53,10 @@ const Home = () => {
                 .get(`${base_url}/todos`, { headers: { Authorization: token } })
                 .then((res) => {
                     console.log(res);
-                    setData(res.data.data);
+                    setTimeout(() => {
+                        setData(res.data.data);
+                        setIsLoading(false);
+                    }, 2000);
                 })
                 .catch((err) => {
                     notify("error", err);
@@ -165,20 +170,24 @@ const Home = () => {
                     <Button text={`Logout`} onClick={() => logout()} />
                 </div>
                 <div className="list">
-                    {data.map((value, index) => (
-                        <ListItem text_list={value.title} key={index}>
-                            <Button text="Edit" color="green" onClick={() => editData(index, value._id)} />
-                            <Button
-                                text="Delete"
-                                color="red"
-                                onClick={() => {
-                                    setCurrentDataIndex(index);
-                                    setCurrentDataId(value._id);
-                                    document.getElementById("my_modal_5").showModal();
-                                }}
-                            />
-                        </ListItem>
-                    ))}
+                    {isLoading ? (
+                        <Skeleton />
+                    ) : (
+                        data.map((value, index) => (
+                            <ListItem text_list={value.title} key={index}>
+                                <Button text="Edit" color="green" onClick={() => editData(index, value._id)} />
+                                <Button
+                                    text="Delete"
+                                    color="red"
+                                    onClick={() => {
+                                        setCurrentDataIndex(index);
+                                        setCurrentDataId(value._id);
+                                        document.getElementById("my_modal_5").showModal();
+                                    }}
+                                />
+                            </ListItem>
+                        ))
+                    )}
 
                     <ListItem text_list={<input type="text" className="text-slate-600 p-2" placeholder="Add Item" id="new_item" onKeyUp={keyUp} />}>
                         <Button
