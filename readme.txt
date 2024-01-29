@@ -34,3 +34,6 @@
     - Library ini untuk fitur drag and drop
 8. Install redux-saga
     - Library ini untuk akses ke middleware api dengan redux
+9. Flow Login React x JWT x Express
+    - React setiap request ke server harus menyertakan token
+    - Setiap route di server harus verify token, jika tidak ada response dengan 400
