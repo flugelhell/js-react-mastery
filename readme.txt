@@ -32,3 +32,5 @@
 
 7. Install react-beautiful-dnd
     - Library ini untuk fitur drag and drop
+8. Install redux-saga
+    - Library ini untuk akses ke middleware api dengan redux
